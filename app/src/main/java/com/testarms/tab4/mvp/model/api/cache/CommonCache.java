@@ -23,20 +23,16 @@ import io.rx_cache2.Reply;
 import io.rx_cache2.internal.RxCache;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import me.jessyan.mvparms.demo.mvp.model.entity.User;
+import com.testarms.tab4.mvp.model.entity.User;
 
 /**
- * ================================================
- * 展示 {@link RxCache#using(Class)} 中需要传入的 Providers 的使用方式
- * <p>
- * Created by JessYan on 08/30/2016 13:53
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
- * ================================================
+ * ================================================ 展示 {@link RxCache#using(Class)} 中需要传入的 Providers
+ * 的使用方式 <p> Created by JessYan on 08/30/2016 13:53 <a href="mailto:jess.yan.effort@gmail.com">Contact
+ * me</a> <a href="https://github.com/JessYanCoding">Follow me</a> ================================================
  */
 public interface CommonCache {
 
-    @LifeCache(duration = 2, timeUnit = TimeUnit.MINUTES)
-    Observable<Reply<List<User>>> getUsers(Observable<List<User>> users,
-        DynamicKey idLastUserQueried, EvictProvider evictProvider);
+  @LifeCache(duration = 2, timeUnit = TimeUnit.MINUTES)
+  Observable<Reply<List<User>>> getUsers(Observable<List<User>> users,
+      DynamicKey idLastUserQueried, EvictProvider evictProvider);
 }

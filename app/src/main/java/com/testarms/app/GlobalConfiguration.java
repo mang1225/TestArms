@@ -52,15 +52,15 @@ public final class GlobalConfiguration implements ConfigModule {
       builder.printHttpLogLevel(RequestInterceptor.Level.NONE);
     }
     builder.baseurl(Api.APP_DOMAIN)
-    //强烈建议自己自定义图片加载逻辑,因为默认提供的 GlideImageLoaderStrategy 并不能满足复杂的需求
-    //请参考 https://github.com/JessYanCoding/MVPArms/wiki#3.4
+        //强烈建议自己自定义图片加载逻辑,因为默认提供的 GlideImageLoaderStrategy 并不能满足复杂的需求
+        //请参考 https://github.com/JessYanCoding/MVPArms/wiki#3.4
 //                .imageLoaderStrategy(new CustomLoaderStrategy())
 
-    //想支持多 BaseUrl, 以及运行时动态切换任意一个 BaseUrl, 请使用 https://github.com/JessYanCoding/RetrofitUrlManager
-    //如果 BaseUrl 在 App 启动时不能确定, 需要请求服务器接口动态获取, 请使用以下代码
-    //以下方式是 Arms 框架自带的切换 BaseUrl 的方式, 在整个 App 生命周期内只能切换一次, 若需要无限次的切换 BaseUrl, 以及各种复杂的应用场景还是需要使用 RetrofitUrlManager 框架
-    //以下代码只是配置, 还要使用 Okhttp (AppComponent中提供) 请求服务器获取到正确的 BaseUrl 后赋值给 GlobalConfiguration.sDomain
-    //切记整个过程必须在第一次调用 Retrofit 接口之前完成, 如果已经调用过 Retrofit 接口, 此种方式将不能切换 BaseUrl
+        //想支持多 BaseUrl, 以及运行时动态切换任意一个 BaseUrl, 请使用 https://github.com/JessYanCoding/RetrofitUrlManager
+        //如果 BaseUrl 在 App 启动时不能确定, 需要请求服务器接口动态获取, 请使用以下代码
+        //以下方式是 Arms 框架自带的切换 BaseUrl 的方式, 在整个 App 生命周期内只能切换一次, 若需要无限次的切换 BaseUrl, 以及各种复杂的应用场景还是需要使用 RetrofitUrlManager 框架
+        //以下代码只是配置, 还要使用 Okhttp (AppComponent中提供) 请求服务器获取到正确的 BaseUrl 后赋值给 GlobalConfiguration.sDomain
+        //切记整个过程必须在第一次调用 Retrofit 接口之前完成, 如果已经调用过 Retrofit 接口, 此种方式将不能切换 BaseUrl
 //                .baseurl(new BaseUrl() {
 //                    @Override
 //                    public HttpUrl url() {
@@ -68,7 +68,7 @@ public final class GlobalConfiguration implements ConfigModule {
 //                    }
 //                })
 
-    //可根据当前项目的情况以及环境为框架某些部件提供自定义的缓存策略, 具有强大的扩展性
+        //可根据当前项目的情况以及环境为框架某些部件提供自定义的缓存策略, 具有强大的扩展性
 //                .cacheFactory(new Cache.Factory() {
 //                    @NonNull
 //                    @Override
@@ -84,7 +84,7 @@ public final class GlobalConfiguration implements ConfigModule {
 //                    }
 //                })
 
-    //若觉得框架默认的打印格式并不能满足自己的需求, 可自行扩展自己理想的打印格式 (以下只是简单实现)
+        //若觉得框架默认的打印格式并不能满足自己的需求, 可自行扩展自己理想的打印格式 (以下只是简单实现)
 //                .formatPrinter(new FormatPrinter() {
 //                    @Override
 //                    public void printJsonRequest(Request request, String bodyString) {
@@ -110,7 +110,7 @@ public final class GlobalConfiguration implements ConfigModule {
 //                    }
 //                })
 
-    // 这里提供一个全局处理 Http 请求和响应结果的处理类,可以比客户端提前一步拿到服务器返回的结果,可以做一些操作,比如token超时,重新获取
+        // 这里提供一个全局处理 Http 请求和响应结果的处理类,可以比客户端提前一步拿到服务器返回的结果,可以做一些操作,比如token超时,重新获取
         .globalHttpHandler(new GlobalHttpHandlerImpl(context))
         // 用来处理 rxjava 中发生的所有错误,rxjava 中发生的每个错误都会回调此接口
         // rxjava必要要使用ErrorHandleSubscriber(默认实现Subscriber的onError方法),此监听才生效

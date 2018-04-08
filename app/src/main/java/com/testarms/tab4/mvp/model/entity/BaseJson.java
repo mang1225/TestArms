@@ -16,45 +16,40 @@
 package com.testarms.tab4.mvp.model.entity;
 
 import java.io.Serializable;
-import me.jessyan.mvparms.demo.mvp.model.api.Api;
+import com.testarms.tab4.mvp.model.api.Api;
 
 /**
- * ================================================
- * 如果你服务器返回的数据格式固定为这种方式(这里只提供思想,服务器返回的数据格式可能不一致,可根据自家服务器返回的格式作更改)
- * 替换范型即可重用 {@link BaseJson}
- * <p>
- * Created by JessYan on 26/09/2016 15:19
- * <a href="mailto:jess.yan.effort@gmail.com">Contact me</a>
- * <a href="https://github.com/JessYanCoding">Follow me</a>
- * ================================================
+ * ================================================ 如果你服务器返回的数据格式固定为这种方式(这里只提供思想,服务器返回的数据格式可能不一致,可根据自家服务器返回的格式作更改)
+ * 替换范型即可重用 {@link BaseJson} <p> Created by JessYan on 26/09/2016 15:19 <a
+ * href="mailto:jess.yan.effort@gmail.com">Contact me</a> <a href="https://github.com/JessYanCoding">Follow
+ * me</a> ================================================
  */
 public class BaseJson<T> implements Serializable {
-    private T data;
-    private String code;
-    private String msg;
 
-    public T getData() {
-        return data;
-    }
+  private T data;
+  private String code;
+  private String msg;
 
-    public String getCode() {
-        return code;
-    }
+  public T getData() {
+    return data;
+  }
 
-    public String getMsg() {
-        return msg;
-    }
+  public String getCode() {
+    return code;
+  }
 
-    /**
-     * 请求是否成功
-     *
-     * @return
-     */
-    public boolean isSuccess() {
-        if (code.equals(Api.RequestSuccess)) {
-            return true;
-        } else {
-            return false;
-        }
+  public String getMsg() {
+    return msg;
+  }
+
+  /**
+   * 请求是否成功
+   */
+  public boolean isSuccess() {
+    if (code.equals(Api.RequestSuccess)) {
+      return true;
+    } else {
+      return false;
     }
+  }
 }
