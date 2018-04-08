@@ -16,6 +16,10 @@
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
+    <activity android:name=".tab1.mvp.ui.activity.Tab1Activity">
+    </activity>
+    <activity android:name=".tab2.mvp.ui.activity.Tab2Activity">
+    </activity>
   </application>
 
 </manifest>
