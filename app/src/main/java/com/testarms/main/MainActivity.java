@@ -6,8 +6,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.testarms.R;
 import com.testarms.common.FragmentCommon;
-import com.testarms.view.tab.TabView;
-import com.testarms.view.tab.TabViewChild;
+import com.testarms.common.view.tab.TabView;
+import com.testarms.common.view.tab.TabViewChild;
 import java.util.ArrayList;
 import java.util.List;
 

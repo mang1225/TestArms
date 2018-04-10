@@ -1,4 +1,4 @@
-package com.testarms.view.tab;
+package com.testarms.common.view.tab;
 
 import android.content.Context;
 import android.util.TypedValue;

@@ -7,10 +7,10 @@
 
   <include layout="@layout/include_title"/>
 
-  <com.testarms.view.tab.TabView
+  <com.testarms.common.view.tab.TabView
     android:id="@+id/tabView"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-  </com.testarms.view.tab.TabView>
+  </com.testarms.common.view.tab.TabView>
 
 </LinearLayout>
