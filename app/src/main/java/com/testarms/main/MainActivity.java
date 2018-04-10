@@ -48,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
     tabView.setTabViewChild(tabViewChildList, getSupportFragmentManager());
     tabView.setOnTabChildClickListener(new TabView.OnTabChildClickListener() {
       @Override
-      public void onTabChildClick(int position, ImageView currentImageIcon, TextView currentTextView) {
+      public void onTabChildClick(int position, ImageView currentImageIcon,
+          TextView currentTextView) {
         // Toast.makeText(getApplicationContext(),"position:"+position,Toast.LENGTH_SHORT).show();
       }
     });
