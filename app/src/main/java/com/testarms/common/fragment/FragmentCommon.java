@@ -1,4 +1,4 @@
-package com.testarms.common;
+package com.testarms.common.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

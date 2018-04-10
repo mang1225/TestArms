@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.testarms.R;
-import com.testarms.common.FragmentCommon;
+import com.testarms.common.fragment.FragmentCommon;
 import com.testarms.common.view.tab.TabView;
 import com.testarms.common.view.tab.TabViewChild;
 import java.util.ArrayList;
