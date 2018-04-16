@@ -1,35 +1,60 @@
 package com.testarms.common.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.util.Log;
 import android.widget.TextView;
 import com.testarms.R;
+import com.testarms.common.view.fragment.LazyFragment;
 
 
-public class FragmentCommon extends Fragment {
+public class FragmentCommon extends LazyFragment {
 
   TextView textView;
+  public static final String INTENT_STRING_TABNAME = "intent_String_tabname";
+  public static final String INTENT_INT_INDEX = "intent_int_index";
+  private String tabName;
+  private int index;
 
-  public static FragmentCommon newInstance(String text) {
+  public static FragmentCommon newInstance(String text, int index) {
     FragmentCommon fragmentCommon = new FragmentCommon();
     Bundle bundle = new Bundle();
-    bundle.putString("text", text);
+    bundle.putString(INTENT_STRING_TABNAME, text);
+    bundle.putInt(INTENT_INT_INDEX, index);
     fragmentCommon.setArguments(bundle);
     return fragmentCommon;
   }
 
-  @Nullable
   @Override
-  public View onCreateView(LayoutInflater inflater,
-      @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_common, container, false);
-    textView = (TextView) view.findViewById(R.id.textView);
-    textView.setText(getArguments().getString("text"));
-    return view;
+  protected void onCreateViewLazy(Bundle savedInstanceState) {
+    super.onCreateViewLazy(savedInstanceState);
+    setContentView(R.layout.fragment_common);
+
+    Bundle bundle = getArguments();
+    tabName = bundle.getString(INTENT_STRING_TABNAME);
+    index = bundle.getInt(INTENT_INT_INDEX);
+
+    textView = (TextView) findViewById(R.id.textView);
+    textView.setText(tabName + "-->" + index);
   }
+
+
+  @Override
+  protected void onResumeLazy() {
+    super.onResumeLazy();
+    Log.d("cccc", "Fragment所在的Activity onResume, onResumeLazy " + this.tabName);
+  }
+
+  @Override
+  protected void onFragmentStartLazy() {
+    super.onFragmentStartLazy();
+    Log.d("cccc", "Fragment 显示 " + this.tabName);
+  }
+
+  @Override
+  protected void onFragmentStopLazy() {
+    super.onFragmentStopLazy();
+    Log.d("cccc", "Fragment 掩藏 " + this.tabName);
+  }
+
 }
 
