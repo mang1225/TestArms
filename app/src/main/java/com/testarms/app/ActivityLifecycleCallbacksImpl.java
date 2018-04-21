@@ -26,9 +26,8 @@ import com.testarms.R;
 import timber.log.Timber;
 
 /**
- * ================================================ 展示 {@link Application.ActivityLifecycleCallbacks}
- * 的用法 <p> Created by JessYan on 04/09/2017 17:14 <a href="mailto:jess.yan.effort@gmail.com">Contact
- * me</a> <a href="https://github.com/JessYanCoding">Follow me</a> ================================================
+ * ================================================ 展示 {@link Application.ActivityLifecycleCallbacks} 的用法 <p> Created by JessYan on 04/09/2017 17:14 <a href="mailto:jess.yan.effort@gmail.com">Contact me</a> <a href="https://github.com/JessYanCoding">Follow me</a>
+ * ================================================
  */
 public class ActivityLifecycleCallbacksImpl implements Application.ActivityLifecycleCallbacks {
 
@@ -47,8 +46,7 @@ public class ActivityLifecycleCallbacksImpl implements Application.ActivityLifec
       //这里全局给Activity设置toolbar和title,你想象力有多丰富,这里就有多强大,以前放到BaseActivity的操作都可以放到这里
       if (activity.findViewById(R.id.toolbar) != null) {
         if (activity instanceof AppCompatActivity) {
-          ((AppCompatActivity) activity)
-              .setSupportActionBar((Toolbar) activity.findViewById(R.id.toolbar));
+          ((AppCompatActivity) activity).setSupportActionBar((Toolbar) activity.findViewById(R.id.toolbar));
           ((AppCompatActivity) activity).getSupportActionBar().setDisplayShowTitleEnabled(false);
         } else {
           if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

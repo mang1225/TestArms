@@ -187,12 +187,9 @@ public class TabView extends RelativeLayout {
       mFragments[i] = t.getmFragment();
     }
     if (mTabViewDefaultPosition >= mTabViewChildList.size()) {
-      mSupportFragmentManager.beginTransaction().add(R.id.tabview_fragment_container, mFragments[0])
-          .show(mFragments[0]).commit();
+      mSupportFragmentManager.beginTransaction().add(R.id.tabview_fragment_container, mFragments[0]).show(mFragments[0]).commit();
     } else {
-      mSupportFragmentManager.beginTransaction()
-          .add(R.id.tabview_fragment_container, mFragments[mTabViewDefaultPosition])
-          .show(mFragments[mTabViewDefaultPosition]).commit();
+      mSupportFragmentManager.beginTransaction().add(R.id.tabview_fragment_container, mFragments[mTabViewDefaultPosition]).show(mFragments[mTabViewDefaultPosition]).commit();
     }
 
     for (int i = 0; i < mTabViewChildList.size(); i++) {
@@ -217,9 +214,7 @@ public class TabView extends RelativeLayout {
       tabChild.setLayoutParams(tabChildParams);
 
       final ImageView imageview = new ImageView(getContext());
-      LinearLayout.LayoutParams ivParams = new LinearLayout.LayoutParams(
-          mImageViewWidth, mImageViewHeight
-      );
+      LinearLayout.LayoutParams ivParams = new LinearLayout.LayoutParams(mImageViewWidth, mImageViewHeight);
       ivParams.gravity = Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL;
 
       imageview.setLayoutParams(ivParams);
@@ -232,10 +227,7 @@ public class TabView extends RelativeLayout {
       textview.setTextColor(mTextViewUnSelColor);
       textview.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextViewSize);
 
-      LinearLayout.LayoutParams textviewParams = new LinearLayout.LayoutParams(
-          LinearLayout.LayoutParams.WRAP_CONTENT,
-          LinearLayout.LayoutParams.WRAP_CONTENT
-      );
+      LinearLayout.LayoutParams textviewParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
       textviewParams.gravity = Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL;
       textviewParams.topMargin = mImageViewTextViewMargin;
       textview.setLayoutParams(textviewParams);
@@ -275,8 +267,7 @@ public class TabView extends RelativeLayout {
     }
   }
 
-  public void setTabViewChild(List<TabViewChild> tabViewChildList,
-      FragmentManager supportFragmentManager) {
+  public void setTabViewChild(List<TabViewChild> tabViewChildList, FragmentManager supportFragmentManager) {
     this.mTabViewChildList = tabViewChildList;
     this.mSupportFragmentManager = supportFragmentManager;
     if (mTabViewDefaultPosition >= tabViewChildList.size()) {

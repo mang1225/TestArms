@@ -28,9 +28,7 @@ import retrofit2.HttpException;
 import timber.log.Timber;
 
 /**
- * ================================================ 展示 {@link ResponseErrorListener} 的用法 <p> Created
- * by JessYan on 04/09/2017 17:18 <a href="mailto:jess.yan.effort@gmail.com">Contact me</a> <a
- * href="https://github.com/JessYanCoding">Follow me</a> ================================================
+ * ================================================ 展示 {@link ResponseErrorListener} 的用法 <p> Created by JessYan on 04/09/2017 17:18 <a href="mailto:jess.yan.effort@gmail.com">Contact me</a> <a href="https://github.com/JessYanCoding">Follow me</a> ================================================
  */
 public class ResponseErrorListenerImpl implements ResponseErrorListener {
 
@@ -46,8 +44,7 @@ public class ResponseErrorListenerImpl implements ResponseErrorListener {
     } else if (t instanceof HttpException) {
       HttpException httpException = (HttpException) t;
       msg = convertStatusCode(httpException);
-    } else if (t instanceof JsonParseException || t instanceof ParseException
-        || t instanceof JSONException || t instanceof JsonIOException) {
+    } else if (t instanceof JsonParseException || t instanceof ParseException || t instanceof JSONException || t instanceof JsonIOException) {
       msg = "数据解析错误";
     }
     ArmsUtils.snackbarText(msg);

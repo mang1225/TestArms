@@ -29,8 +29,7 @@ import okhttp3.Response;
 import timber.log.Timber;
 
 /**
- * ================================================ 展示 {@link GlobalHttpHandler} 的用法 <p> Created by
- * JessYan on 04/09/2017 17:06 <a href="mailto:jess.yan.effort@gmail.com">Contact me</a> <a
+ * ================================================ 展示 {@link GlobalHttpHandler} 的用法 <p> Created by JessYan on 04/09/2017 17:06 <a href="mailto:jess.yan.effort@gmail.com">Contact me</a> <a
  * href="https://github.com/JessYanCoding">Follow me</a> ================================================
  */
 public class GlobalHttpHandlerImpl implements GlobalHttpHandler {
@@ -42,21 +41,16 @@ public class GlobalHttpHandlerImpl implements GlobalHttpHandler {
   }
 
   @Override
-  public Response onHttpResultResponse(String httpResult, Interceptor.Chain chain,
-      Response response) {
+  public Response onHttpResultResponse(String httpResult, Interceptor.Chain chain, Response response) {
                     /* 这里可以先客户端一步拿到每一次http请求的结果,可以解析成json,做一些操作,如检测到token过期后
                        重新请求token,并重新执行请求 */
 
-    if (!TextUtils.isEmpty(httpResult) && RequestInterceptor
-        .isJson(response.body().contentType())) {
+    if (!TextUtils.isEmpty(httpResult) && RequestInterceptor.isJson(response.body().contentType())) {
       try {
-        List<User> list = ArmsUtils
-            .obtainAppComponentFromContext(context).gson()
-            .fromJson(httpResult, new TypeToken<List<User>>() {
-            }.getType());
+        List<User> list = ArmsUtils.obtainAppComponentFromContext(context).gson().fromJson(httpResult, new TypeToken<List<User>>() {
+        }.getType());
         User user = list.get(0);
-        Timber.w("Result ------> " + user.getLogin() + "    ||   Avatar_url------> " + user
-            .getAvatarUrl());
+        Timber.w("Result ------> " + user.getLogin() + "    ||   Avatar_url------> " + user.getAvatarUrl());
       } catch (Exception e) {
         e.printStackTrace();
         return response;

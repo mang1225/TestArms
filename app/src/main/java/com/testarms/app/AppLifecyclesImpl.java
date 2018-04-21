@@ -26,9 +26,7 @@ import com.testarms.BuildConfig;
 import timber.log.Timber;
 
 /**
- * ================================================ 展示 {@link AppLifecycles} 的用法 <p> Created by
- * JessYan on 04/09/2017 17:12 <a href="mailto:jess.yan.effort@gmail.com">Contact me</a> <a
- * href="https://github.com/JessYanCoding">Follow me</a> ================================================
+ * ================================================ 展示 {@link AppLifecycles} 的用法 <p> Created by JessYan on 04/09/2017 17:12 <a href="mailto:jess.yan.effort@gmail.com">Contact me</a> <a href="https://github.com/JessYanCoding">Follow me</a> ================================================
  */
 public class AppLifecyclesImpl implements AppLifecycles {
 
@@ -60,17 +58,15 @@ public class AppLifecyclesImpl implements AppLifecycles {
       ButterKnife.setDebug(true);
     }
     //leakCanary内存泄露检查
-    ArmsUtils.obtainAppComponentFromContext(application).extras().put(RefWatcher.class.getName(),
-        BuildConfig.USE_CANARY ? LeakCanary.install(application) : RefWatcher.DISABLED);
+    ArmsUtils.obtainAppComponentFromContext(application).extras().put(RefWatcher.class.getName(), BuildConfig.USE_CANARY ? LeakCanary.install(application) : RefWatcher.DISABLED);
     //扩展 AppManager 的远程遥控功能
-    ArmsUtils.obtainAppComponentFromContext(application).appManager()
-        .setHandleListener((appManager, message) -> {
-          switch (message.what) {
-            //case 0:
-            //do something ...
-            //   break;
-          }
-        });
+    ArmsUtils.obtainAppComponentFromContext(application).appManager().setHandleListener((appManager, message) -> {
+      switch (message.what) {
+        //case 0:
+        //do something ...
+        //   break;
+      }
+    });
     //Usage:
     //Message msg = new Message();
     //msg.what = 0;

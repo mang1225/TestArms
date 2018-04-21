@@ -34,14 +34,10 @@ import me.jessyan.progressmanager.ProgressManager;
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 
 /**
- * ================================================ App 的全局配置信息在此配置, 需要将此实现类声明到 AndroidManifest 中
- * ConfigModule 的实现类可以有无数多个, 在 Application 中只是注册回调, 并不会影响性能 (多个 ConfigModule 在多 Module 环境下尤为受用)
- * 不过要注意 ConfigModule 接口的实现类对象是通过反射生成的, 这里会有些性能损耗
+ * ================================================ App 的全局配置信息在此配置, 需要将此实现类声明到 AndroidManifest 中 ConfigModule 的实现类可以有无数多个, 在 Application 中只是注册回调, 并不会影响性能 (多个 ConfigModule 在多 Module 环境下尤为受用) 不过要注意 ConfigModule 接口的实现类对象是通过反射生成的, 这里会有些性能损耗
  *
  * @see com.jess.arms.base.delegate.AppDelegate
- * @see com.jess.arms.integration.ManifestParser Created by JessYan on 12/04/2017 17:25 <a
- * href="mailto:jess.yan.effort@gmail.com">Contact me</a> <a href="https://github.com/JessYanCoding">Follow
- * me</a> ================================================
+ * @see com.jess.arms.integration.ManifestParser Created by JessYan on 12/04/2017 17:25 <a href="mailto:jess.yan.effort@gmail.com">Contact me</a> <a href="https://github.com/JessYanCoding">Follow me</a> ================================================
  */
 public final class GlobalConfiguration implements ConfigModule {
 //    public static String sDomain = Api.APP_DOMAIN;
@@ -114,30 +110,24 @@ public final class GlobalConfiguration implements ConfigModule {
         .globalHttpHandler(new GlobalHttpHandlerImpl(context))
         // 用来处理 rxjava 中发生的所有错误,rxjava 中发生的每个错误都会回调此接口
         // rxjava必要要使用ErrorHandleSubscriber(默认实现Subscriber的onError方法),此监听才生效
-        .responseErrorListener(new ResponseErrorListenerImpl())
-        .gsonConfiguration((context1, gsonBuilder) -> {//这里可以自己自定义配置Gson的参数
-          gsonBuilder
-              .serializeNulls()//支持序列化null的参数
-              .enableComplexMapKeySerialization();//支持将序列化key为object的map,默认只能序列化key为string的map
-        })
-        .retrofitConfiguration(
-            (context1, retrofitBuilder) -> {//这里可以自己自定义配置Retrofit的参数,甚至你可以替换系统配置好的okhttp对象
+        .responseErrorListener(new ResponseErrorListenerImpl()).gsonConfiguration((context1, gsonBuilder) -> {//这里可以自己自定义配置Gson的参数
+      gsonBuilder.serializeNulls()//支持序列化null的参数
+          .enableComplexMapKeySerialization();//支持将序列化key为object的map,默认只能序列化key为string的map
+    }).retrofitConfiguration((context1, retrofitBuilder) -> {//这里可以自己自定义配置Retrofit的参数,甚至你可以替换系统配置好的okhttp对象
 //                    retrofitBuilder.addConverterFactory(FastJsonConverterFactory.create());//比如使用fastjson替代gson
-            })
-        .okhttpConfiguration((context1, okhttpBuilder) -> {//这里可以自己自定义配置Okhttp的参数
+    }).okhttpConfiguration((context1, okhttpBuilder) -> {//这里可以自己自定义配置Okhttp的参数
 //                    okhttpBuilder.sslSocketFactory(); //支持 Https,详情请百度
-          okhttpBuilder.writeTimeout(10, TimeUnit.SECONDS);
-          //使用一行代码监听 Retrofit／Okhttp 上传下载进度监听,以及 Glide 加载进度监听 详细使用方法查看 https://github.com/JessYanCoding/ProgressManager
-          ProgressManager.getInstance().with(okhttpBuilder);
-          //让 Retrofit 同时支持多个 BaseUrl 以及动态改变 BaseUrl. 详细使用请方法查看 https://github.com/JessYanCoding/RetrofitUrlManager
-          RetrofitUrlManager.getInstance().with(okhttpBuilder);
-        })
-        .rxCacheConfiguration((context1, rxCacheBuilder) -> {//这里可以自己自定义配置 RxCache 的参数
-          rxCacheBuilder.useExpiredDataIfLoaderNotAvailable(true);
-          // 想自定义 RxCache 的缓存文件夹或者解析方式, 如改成 fastjson, 请 return rxCacheBuilder.persistence(cacheDirectory, new FastJsonSpeaker());
-          // 否则请 return null;
-          return null;
-        });
+      okhttpBuilder.writeTimeout(10, TimeUnit.SECONDS);
+      //使用一行代码监听 Retrofit／Okhttp 上传下载进度监听,以及 Glide 加载进度监听 详细使用方法查看 https://github.com/JessYanCoding/ProgressManager
+      ProgressManager.getInstance().with(okhttpBuilder);
+      //让 Retrofit 同时支持多个 BaseUrl 以及动态改变 BaseUrl. 详细使用请方法查看 https://github.com/JessYanCoding/RetrofitUrlManager
+      RetrofitUrlManager.getInstance().with(okhttpBuilder);
+    }).rxCacheConfiguration((context1, rxCacheBuilder) -> {//这里可以自己自定义配置 RxCache 的参数
+      rxCacheBuilder.useExpiredDataIfLoaderNotAvailable(true);
+      // 想自定义 RxCache 的缓存文件夹或者解析方式, 如改成 fastjson, 请 return rxCacheBuilder.persistence(cacheDirectory, new FastJsonSpeaker());
+      // 否则请 return null;
+      return null;
+    });
   }
 
   @Override
@@ -148,16 +138,14 @@ public final class GlobalConfiguration implements ConfigModule {
   }
 
   @Override
-  public void injectActivityLifecycle(Context context,
-      List<Application.ActivityLifecycleCallbacks> lifecycles) {
+  public void injectActivityLifecycle(Context context, List<Application.ActivityLifecycleCallbacks> lifecycles) {
     // ActivityLifecycleCallbacks 的所有方法都会在 Activity (包括三方库) 的对应的生命周期中被调用,所以在对应的方法中可以扩展一些自己需要的逻辑
     // 可以根据不同的逻辑添加多个实现类
     lifecycles.add(new ActivityLifecycleCallbacksImpl());
   }
 
   @Override
-  public void injectFragmentLifecycle(Context context,
-      List<FragmentManager.FragmentLifecycleCallbacks> lifecycles) {
+  public void injectFragmentLifecycle(Context context, List<FragmentManager.FragmentLifecycleCallbacks> lifecycles) {
     lifecycles.add(new FragmentManager.FragmentLifecycleCallbacks() {
 
       @Override
@@ -171,11 +159,7 @@ public final class GlobalConfiguration implements ConfigModule {
 
       @Override
       public void onFragmentDestroyed(FragmentManager fm, Fragment f) {
-        ((RefWatcher) ArmsUtils
-            .obtainAppComponentFromContext(f.getActivity())
-            .extras()
-            .get(RefWatcher.class.getName()))
-            .watch(f);
+        ((RefWatcher) ArmsUtils.obtainAppComponentFromContext(f.getActivity()).extras().get(RefWatcher.class.getName())).watch(f);
       }
     });
   }

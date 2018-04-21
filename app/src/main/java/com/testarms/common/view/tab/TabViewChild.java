@@ -15,8 +15,7 @@ public class TabViewChild {
 
   }
 
-  public TabViewChild(int imageViewSelIcon, int imageViewUnSelIcon, String textViewText,
-      Fragment mFragment) {
+  public TabViewChild(int imageViewSelIcon, int imageViewUnSelIcon, String textViewText, Fragment mFragment) {
     this.imageViewSelIcon = imageViewSelIcon;
     this.imageViewUnSelIcon = imageViewUnSelIcon;
     this.textViewText = textViewText;
