@@ -23,8 +23,7 @@ public class BaseFragment extends Fragment {
   }
 
   @Override
-  public final View onCreateView(LayoutInflater inflater, ViewGroup container,
-      Bundle savedInstanceState) {
+  public final View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     this.inflater = inflater;
     this.container = container;
     onCreateView(savedInstanceState);

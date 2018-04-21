@@ -29,8 +29,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * ================================================ 放置便于使用 RxJava 的一些工具类 <p> Created by JessYan on
- * 11/10/2016 16:39 <a href="mailto:jess.yan.effort@gmail.com">Contact me</a> <a
+ * ================================================ 放置便于使用 RxJava 的一些工具类 <p> Created by JessYan on 11/10/2016 16:39 <a href="mailto:jess.yan.effort@gmail.com">Contact me</a> <a
  * href="https://github.com/JessYanCoding">Follow me</a> ================================================
  */
 public class RxUtils {
@@ -42,21 +41,17 @@ public class RxUtils {
     return new ObservableTransformer<T, T>() {
       @Override
       public Observable<T> apply(Observable<T> observable) {
-        return observable.subscribeOn(Schedulers.io())
-            .doOnSubscribe(new Consumer<Disposable>() {
-              @Override
-              public void accept(@NonNull Disposable disposable) throws Exception {
-                view.showLoading();//显示进度条
-              }
-            })
-            .subscribeOn(AndroidSchedulers.mainThread())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doFinally(new Action() {
-              @Override
-              public void run() {
-                view.hideLoading();//隐藏进度条
-              }
-            }).compose(RxLifecycleUtils.bindToLifecycle(view));
+        return observable.subscribeOn(Schedulers.io()).doOnSubscribe(new Consumer<Disposable>() {
+          @Override
+          public void accept(@NonNull Disposable disposable) throws Exception {
+            view.showLoading();//显示进度条
+          }
+        }).subscribeOn(AndroidSchedulers.mainThread()).observeOn(AndroidSchedulers.mainThread()).doFinally(new Action() {
+          @Override
+          public void run() {
+            view.hideLoading();//隐藏进度条
+          }
+        }).compose(RxLifecycleUtils.bindToLifecycle(view));
       }
     };
   }
